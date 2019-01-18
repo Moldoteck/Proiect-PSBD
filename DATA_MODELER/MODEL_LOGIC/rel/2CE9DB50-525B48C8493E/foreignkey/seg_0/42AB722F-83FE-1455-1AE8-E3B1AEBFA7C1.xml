@@ -1,0 +1,17 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="42AB722F-83FE-1455-1AE8-E3B1AEBFA7C1" containerWithKeyObject="624DFFF2-F241-7696-1E6D-CB348381B83C" localFKIndex="0A150F1A-52D2-4A85-4F6A-0764F116828A" name="FK_Loc_ToRepublici">
+<createdBy>Cristian</createdBy>
+<createdTime>2019-01-07 17:45:39 UTC</createdTime>
+<generatorID>813723F8-AF31-960A-8141-CB28BC1E2FDA</generatorID>
+<ownerDesignName>MODEL_LOGIC</ownerDesignName>
+<referredTableLongName>Republici</referredTableLongName>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>EA6E6ED2-1E5F-9D25-228D-A7BDC590E146</referredTableID>
+<keyObject>6E959FCA-D4B0-3A3B-B5A0-64B9266F3B63</keyObject>
+<referredKeyID>6E959FCA-D4B0-3A3B-B5A0-64B9266F3B63</referredKeyID>
+<mandatory>true</mandatory>
+<refColNames>ID_REPUBLICA</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

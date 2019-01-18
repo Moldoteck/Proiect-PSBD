@@ -1,0 +1,64 @@
+SET SERVEROUTPUT ON
+begin
+    for i in 1..100
+    loop
+        Utils_Republica.Insert_Republica('RSSM'||i);
+    end loop;
+end;
+/
+SET SERVEROUTPUT ON
+begin
+    for i in 1..100
+    loop
+        Utils_Obiecte.Insert_Obiect('Table'||i);
+    end loop;
+end;
+/
+SET SERVEROUTPUT ON
+begin
+    for i in 1..100
+    loop
+    Utils_Localitati.Insert_Localitate('Chisinau'||i, i);
+    end loop;
+end;
+/
+SET SERVEROUTPUT ON
+begin
+    for i in 1..100
+    loop
+    for j in 1..100
+    loop
+        utils_deportati.insert_deportat('name'||i, 'lastname'||j, TO_DATE('18.03.1870'), null,i);
+    end loop;
+    end loop;
+end;
+/
+SET SERVEROUTPUT ON
+declare
+    did NUMBER;
+begin
+    did:=1;
+    for i in 1..100
+    loop
+    for j in 1..100
+    loop
+        Utils_DetaliiC.Insert_DetaliiC(i, 1, 0, did);
+        did:=did+1;
+    end loop;
+    end loop;
+end;
+/
+SET SERVEROUTPUT ON
+declare
+    did NUMBER;
+begin
+    did:=1;
+    for i in 1..100
+    loop
+    for j in 1..100
+    loop
+        Utils_DetaliiD.Insert_DetaliiD(did, null, TO_DATE('06.06.1942','dd.mm.yyyy'),i ,null);
+        did:=did+1;
+    end loop;
+    end loop;
+end;

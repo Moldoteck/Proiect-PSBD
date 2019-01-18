@@ -1,0 +1,99 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="DAB12F05-F823-FF93-31F8-E82C0BF3FE04" name="DetaliiConfiscari">
+<createdBy>Cristian</createdBy>
+<createdTime>2018-10-15 12:41:15 UTC</createdTime>
+<ownerDesignName>MODEL_LOGIC</ownerDesignName>
+<engineerTo>
+<item key="2CE9DB50-65BF-4FFE-FEF9-525B48C8493E" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="ID_OBIECT" id="2D58ACB5-54D0-6D86-F9C0-C1BEDB00389C">
+<createdBy>Cristian</createdBy>
+<createdTime>2018-10-15 12:45:10 UTC</createdTime>
+<generatorID>9F0CBBBE-8826-F2D5-DD0D-B49A63CB77C9</generatorID>
+<ownerDesignName>MODEL_LOGIC</ownerDesignName>
+<engineerTo>
+<item key="2CE9DB50-65BF-4FFE-FEF9-525B48C8493E" value="true"/>
+</engineerTo>
+<referedAttribute>8C828237-AC17-4545-D080-70CA4B5B9989</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="CANTITATE" id="3F66EA1F-AA41-78A7-A9FC-5232A27362BE">
+<createdBy>Cristian</createdBy>
+<createdTime>2018-10-15 12:42:21 UTC</createdTime>
+<ownerDesignName>MODEL_LOGIC</ownerDesignName>
+<engineerTo>
+<item key="2CE9DB50-65BF-4FFE-FEF9-525B48C8493E" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<defaultValue>1</defaultValue>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<listOfRanges>
+<rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
+<beginValue>1</beginValue>
+<endValue>999</endValue>
+</rangeDef>
+</listOfRanges>
+</Attribute>
+<Attribute name="STARE" id="0E0F2F5B-AE39-2B0E-592B-8ACF00FB279E">
+<createdBy>Cristian</createdBy>
+<createdTime>2018-10-29 09:58:27 UTC</createdTime>
+<ownerDesignName>MODEL_LOGIC</ownerDesignName>
+<engineerTo>
+<item key="2CE9DB50-65BF-4FFE-FEF9-525B48C8493E" value="true"/>
+</engineerTo>
+<constraintName>Values_CK</constraintName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<listOfValues>
+<valueDef value="0" description="La stat"/>
+<valueDef value="1" description="Pierdut"/>
+<valueDef value="2" description="Returnat"/>
+</listOfValues>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="ID_DEPORTAT" id="9AF1FC84-6EC6-61C8-6748-25F00862C8F1">
+<createdBy>Cristian</createdBy>
+<createdTime>2018-10-29 12:15:34 UTC</createdTime>
+<generatorID>48073A18-BEBD-F81C-4301-8EBCD11818B9</generatorID>
+<ownerDesignName>MODEL_LOGIC</ownerDesignName>
+<engineerTo>
+<item key="2CE9DB50-65BF-4FFE-FEF9-525B48C8493E" value="true"/>
+</engineerTo>
+<referedAttribute>94127E47-E24C-D6B1-9B0B-682AB950859F</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="CC8D1F42-2D2E-9FBC-76FB-A8544A135516" name="Key_1">
+<createdBy>Cristian</createdBy>
+<createdTime>2018-11-12 11:07:44 UTC</createdTime>
+<ownerDesignName>MODEL_LOGIC</ownerDesignName>
+<engineerTo>
+<item key="2CE9DB50-65BF-4FFE-FEF9-525B48C8493E" value="true"/>
+</engineerTo>
+<newElementsIDs>48073A18-BEBD-F81C-4301-8EBCD11818B9,9F0CBBBE-8826-F2D5-DD0D-B49A63CB77C9</newElementsIDs>
+<usedAttributes>
+<attributeRef>9AF1FC84-6EC6-61C8-6748-25F00862C8F1</attributeRef>
+<attributeRef>2D58ACB5-54D0-6D86-F9C0-C1BEDB00389C</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

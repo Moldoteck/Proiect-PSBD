@@ -1,0 +1,8 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<OSDM_Design class="oracle.dbtools.crest.model.design.Design" name="MODEL_LOGIC" id="45A2563E-EE54-8F5F-D56A-BEFE72D75D58" version="3.5">
+<createdBy>Cristian</createdBy>
+<createdTime>2018-10-15 09:51:33 UTC</createdTime>
+<ownerDesignName>MODEL_LOGIC</ownerDesignName>
+<capitalNames>false</capitalNames>
+<designId>45A2563E-EE54-8F5F-D56A-BEFE72D75D58</designId>
+</OSDM_Design>

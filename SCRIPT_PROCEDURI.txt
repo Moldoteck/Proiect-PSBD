@@ -1,0 +1,496 @@
+CREATE OR REPLACE TRIGGER detalii_Change_Obiecte
+BEFORE INSERT OR UPDATE OR DELETE ON DETALIIDEPORTARE
+FOR EACH ROW
+DECLARE
+    d_confiscare SYS_REFCURSOR;
+    obiect_id DETALIICONFISCARI.ID_OBIECT%TYPE;
+    status DETALIICONFISCARI.STARE%TYPE;
+    oname OBIECTE.DENUMIRE%TYPE;
+    lostObjects DETALIIDEPORTARE.OBIECTE_PIERDUTE%TYPE;
+BEGIN
+    IF INSERTING THEN
+        IF :new.DATA_REABILITARE is not null THEN
+            lostObjects:='';
+            OPEN d_confiscare FOR SELECT 
+                    dc.ID_OBIECT as ID_OBIECT,
+                    dc.STARE as STARE
+                    FROM DETALIICONFISCARI dc where dc.ID_DEPORTAT = :new.ID_DEPORTAT;
+            LOOP
+                FETCH d_confiscare into obiect_id, status;
+                EXIT WHEN d_confiscare%NOTFOUND;
+                IF status = 0 THEN
+                    Utils_DetaliiC.Update_DetaliiC_NoCheck(obiect_id, :new.ID_DEPORTAT, 0, 2, 2);
+                ELSIF status = 1 THEN
+                    UTILS_OBIECTE.Get_Obiect_By_Id(oname, obiect_id);
+                    lostObjects:=lostObjects||', '||oname;
+                END IF;
+            END LOOP;
+            :new.OBIECTE_PIERDUTE := lostObjects;
+            CLOSE d_confiscare;
+            --RAISE_APPLICATION_ERROR (-20500,'You may only insert into EMP during normal hours.');
+        END IF;
+    ELSIF UPDATING THEN
+        IF :new.DATA_REABILITARE is null THEN
+            :new.OBIECTE_PIERDUTE := '';  
+            OPEN d_confiscare FOR SELECT 
+                    dc.ID_OBIECT as ID_OBIECT,
+                    dc.STARE as STARE
+                    FROM DETALIICONFISCARI dc where dc.ID_DEPORTAT = :new.ID_DEPORTAT;
+            LOOP
+                FETCH d_confiscare into obiect_id, status;
+                EXIT WHEN d_confiscare%NOTFOUND;
+                IF status = 2 THEN
+                    Utils_DetaliiC.Update_DetaliiC_NoCheck(obiect_id, :new.ID_DEPORTAT, 0, 0, 2);
+                END IF;
+            END LOOP;
+            CLOSE d_confiscare;
+        ELSIF (:new.DATA_REABILITARE is not null and :old.DATA_REABILITARE is null) THEN
+            lostObjects:='';
+            OPEN d_confiscare FOR SELECT 
+                    dc.ID_OBIECT as ID_OBIECT,
+                    dc.STARE as STARE
+                    FROM DETALIICONFISCARI dc where dc.ID_DEPORTAT = :new.ID_DEPORTAT;
+            LOOP
+                FETCH d_confiscare into obiect_id, status;
+                EXIT WHEN d_confiscare%NOTFOUND;
+                IF status = 0 THEN
+                    Utils_DetaliiC.Update_DetaliiC_NoCheck(obiect_id, :new.ID_DEPORTAT, 0, 2, 2);
+                ELSIF status = 1 THEN
+                    UTILS_OBIECTE.Get_Obiect_By_Id(oname, obiect_id);
+                    lostObjects:=lostObjects||', '||oname;
+                END IF;
+            END LOOP;
+            :new.OBIECTE_PIERDUTE := lostObjects;
+            CLOSE d_confiscare;
+        END IF;
+    ELSIF DELETING THEN
+        OPEN d_confiscare FOR SELECT 
+                dc.ID_OBIECT as ID_OBIECT,
+                dc.STARE as STARE
+                FROM DETALIICONFISCARI dc where dc.ID_DEPORTAT = :old.ID_DEPORTAT;
+        LOOP
+            FETCH d_confiscare into obiect_id, status;
+            EXIT WHEN d_confiscare%NOTFOUND;
+            IF status = 2 THEN
+                Utils_DetaliiC.Update_DetaliiC_NoCheck(obiect_id, :new.ID_DEPORTAT, 0, 0, 2);
+            END IF;
+        END LOOP;
+        CLOSE d_confiscare;
+    END IF;
+END;
+
+/
+DROP PACKAGE Utils_Republica;
+-----------------------------------------------------------------------------------
+create or replace PACKAGE Utils_Republica IS
+   PROCEDURE Update_Republica(republic_id IN NUMBER, denumire_republica IN VARCHAR);
+   PROCEDURE Delete_Republica(denumire_republica IN VARCHAR);
+   PROCEDURE Insert_Republica(denumire_republica IN VARCHAR);
+   PROCEDURE Select_Republici(republici OUT SYS_REFCURSOR);
+   PROCEDURE Get_Republica(republic_id IN NUMBER, denumire_republica IN OUT VARCHAR2);
+   PROCEDURE Get_Id_Republica(denumire_republica IN VARCHAR2,republic_id OUT  NUMBER);
+END Utils_Republica;
+/
+create or replace PACKAGE BODY Utils_Republica as
+     PROCEDURE Update_Republica(republic_id IN NUMBER, denumire_republica IN VARCHAR) IS
+        BEGIN
+            UPDATE Republici SET DENUMIRE = denumire_republica WHERE ID_republica = republic_id;
+    END Update_Republica;
+        
+    PROCEDURE Delete_Republica(denumire_republica IN VARCHAR) IS
+    BEGIN
+            DELETE FROM Republici WHERE DENUMIRE = denumire_republica;
+    END Delete_Republica;
+    
+   PROCEDURE Insert_Republica(denumire_republica IN VARCHAR) IS
+       BEGIN
+            INSERT INTO Republici(DENUMIRE) 
+                VALUES (denumire_republica);
+       END Insert_Republica;
+   
+   PROCEDURE Select_Republici(republici OUT SYS_REFCURSOR) IS
+        BEGIN
+        OPEN republici FOR SELECT 
+                    r.Denumire as Denumire
+                    FROM Republici r;
+    END Select_Republici;
+    
+    PROCEDURE Get_Republica(republic_id IN NUMBER, denumire_republica IN OUT VARCHAR2) IS
+    BEGIN
+        select DENUMIRE into denumire_republica from Republici where id_republica=republic_id;
+    END Get_Republica;
+    
+   PROCEDURE Get_Id_Republica(denumire_republica IN VARCHAR2,republic_id OUT  NUMBER) IS
+   BEGIN
+        select id_republica into republic_id from Republici where denumire=denumire_republica;
+   END Get_Id_Republica;
+END Utils_Republica;
+/
+
+
+DROP PACKAGE Utils_Deportati;
+-----------------------------------------------------------------------------------
+create or replace PACKAGE Utils_Deportati IS
+   PROCEDURE Update_Deportat(deportat_id IN NUMBER, dnume IN VARCHAR,dprenume IN VARCHAR,dnastere IN DATE,ddeces IN DATE,didloc IN NUMBER, toUpdate IN NUMBER);
+   PROCEDURE Delete_Deportat(deportat_id IN NUMBER);
+   PROCEDURE Insert_Deportat(dnume IN VARCHAR,dprenume IN VARCHAR,dnastere IN DATE,ddeces IN DATE,didloc IN NUMBER);
+   PROCEDURE Select_Deportati(deportati OUT SYS_REFCURSOR);
+   PROCEDURE Get_Deportat_By_Id(deportat_id IN NUMBER, deportat OUT SYS_REFCURSOR);
+END Utils_Deportati;
+/
+create or replace PACKAGE BODY Utils_Deportati as
+     PROCEDURE Update_Deportat(deportat_id IN NUMBER, dnume IN VARCHAR,dprenume IN VARCHAR,dnastere IN DATE,ddeces IN DATE,didloc IN NUMBER, toUpdate IN NUMBER) 
+     IS
+      BEGIN
+      IF toUpdate = 1 THEN
+            UPDATE DEPORTATI SET NUME = dnume WHERE ID_deportat = deportat_id;
+        ELSIF toUpdate = 2 THEN
+            UPDATE DEPORTATI SET PRENUME = dprenume WHERE ID_deportat = deportat_id;
+        ELSIF toUpdate = 3 THEN
+            UPDATE DEPORTATI SET DATA_NASTERII = dnastere WHERE ID_deportat = deportat_id;
+        ELSIF toUpdate = 4 THEN
+            UPDATE DEPORTATI SET DATA_DECES = ddeces WHERE ID_deportat = deportat_id;
+        ELSIF toUpdate = 5 THEN
+            UPDATE DEPORTATI SET ID_LOCALITATE = didloc WHERE ID_deportat = deportat_id;
+        END IF;
+    END Update_Deportat;
+        
+    PROCEDURE Delete_Deportat(deportat_id IN NUMBER) IS
+    BEGIN
+            DELETE FROM DEPORTATI WHERE ID_DEPORTAT = deportat_id;
+    END Delete_Deportat;
+    
+   PROCEDURE Insert_Deportat(dnume IN VARCHAR,dprenume IN VARCHAR,dnastere IN DATE,ddeces IN DATE,didloc IN NUMBER)
+   IS
+       BEGIN
+            INSERT INTO DEPORTATI(NUME,PRENUME,DATA_NASTERII,DATA_DECES,ID_LOCALITATE) 
+                VALUES (dnume,dprenume,dnastere,ddeces,didloc);
+       END Insert_Deportat;
+   
+   PROCEDURE Select_Deportati(deportati OUT SYS_REFCURSOR) IS
+        BEGIN
+        OPEN deportati FOR SELECT 
+                    rpad(d.ID_DEPORTAT,5,' ') as ID_DEPORTAT,
+                    lpad(d.NUME,10,' ') as NUME,
+                    lpad(d.PRENUME,10,' ') as PRENUME,
+                    TO_CHAR(d.DATA_NASTERII, 'dd.mm.yyyy') as DATA_NASTERII,
+                    TO_CHAR(d.DATA_DECES, 'dd.mm.yyyy') as DATA_DECES,
+                    (select DENUMIRE from Localitati where ID_LOCALITATE=d.ID_LOCALITATE) as ID_LOCALITATE
+                    FROM DEPORTATI d;
+    END Select_Deportati;
+    
+   PROCEDURE Get_Deportat_By_Id(deportat_id IN NUMBER, deportat OUT SYS_REFCURSOR) IS
+   BEGIN
+        OPEN deportat FOR SELECT 
+            d.ID_DEPORTAT as ID_DEPORTAT,
+            d.NUME as NUME,
+            d.PRENUME as PRENUME,
+            d.DATA_NASTERII as DATA_NASTERII,
+            d.DATA_DECES as DATA_DECES,
+            d.ID_LOCALITATE as ID_LOCALITATE
+            FROM DEPORTATI d where ID_DEPORTAT=deportat_id;
+   END;
+END Utils_Deportati;
+/
+
+
+DROP PACKAGE Utils_Obiecte;
+-----------------------------------------------------------------------------------
+create or replace PACKAGE Utils_Obiecte IS
+   PROCEDURE Update_Obiect(obiect_id IN NUMBER, denumire_obiect IN VARCHAR);
+   PROCEDURE Delete_Obiect(denumire_obiect IN VARCHAR);
+   PROCEDURE Insert_Obiect(denumire_obiect IN VARCHAR);
+   PROCEDURE Select_Obiecte(obiecte OUT SYS_REFCURSOR);
+   PROCEDURE Get_Id_Obiect(denumire_obiect IN VARCHAR, obiect_id OUT NUMBER);
+   PROCEDURE Get_Obiect_By_Id(denumire_obiect OUT VARCHAR, obiect_id IN NUMBER);
+END Utils_Obiecte;
+/
+create or replace PACKAGE BODY Utils_Obiecte as
+     PROCEDURE Update_Obiect(obiect_id IN NUMBER, denumire_obiect IN VARCHAR) IS
+        BEGIN
+            UPDATE Obiecte SET DENUMIRE = denumire_obiect WHERE ID_obiect = obiect_id;
+    END Update_Obiect;
+        
+    PROCEDURE Delete_Obiect(denumire_obiect IN VARCHAR) IS
+    BEGIN
+            DELETE FROM Obiecte WHERE DENUMIRE = denumire_obiect;
+    END Delete_Obiect;
+    
+   PROCEDURE Insert_Obiect(denumire_obiect IN VARCHAR) IS
+       BEGIN
+            INSERT INTO Obiecte(DENUMIRE) 
+                VALUES (denumire_obiect);
+       END Insert_Obiect;
+   
+   PROCEDURE Select_Obiecte(obiecte OUT SYS_REFCURSOR) IS
+        BEGIN
+        OPEN obiecte FOR SELECT 
+                    o.Denumire as Denumire
+                    FROM Obiecte o;
+    END Select_Obiecte;
+    
+    
+   PROCEDURE Get_Id_Obiect(denumire_obiect IN VARCHAR, obiect_id OUT NUMBER) IS
+   BEGIN
+        select id_obiect into obiect_id from obiecte where denumire = denumire_obiect;
+   END Get_Id_Obiect;
+   
+   
+   PROCEDURE Get_Obiect_By_Id(denumire_obiect OUT VARCHAR, obiect_id IN NUMBER) IS
+   BEGIN
+        select denumire into denumire_obiect from obiecte where id_obiect = obiect_id;
+   END Get_Obiect_By_Id;
+END Utils_Obiecte;
+/
+
+
+DROP PACKAGE Utils_Localitati;
+-----------------------------------------------------------------------------------
+create or replace PACKAGE Utils_Localitati IS
+   PROCEDURE Update_Localitate(denumire_localitate_old IN VARCHAR, denumire_localitate_new IN VARCHAR, republica_id IN NUMBER);
+   PROCEDURE Delete_Localitate(denumire_localitate IN VARCHAR, republica_id IN NUMBER);
+   PROCEDURE Insert_Localitate(denumire_localitate IN VARCHAR, republica_id IN NUMBER);
+   PROCEDURE Select_Localitati(localitatile OUT SYS_REFCURSOR);
+   PROCEDURE Get_Id_Localitate(denumire_localitate IN VARCHAR, republica_id IN NUMBER, localitate_id OUT NUMBER);
+   PROCEDURE Get_Localitate_Republica_By_Id(localitate_id IN NUMBER, republica_den OUT VARCHAR, localitate_den OUT VARCHAR);
+END Utils_Localitati;
+/
+create or replace PACKAGE BODY Utils_Localitati as
+     PROCEDURE Update_Localitate(denumire_localitate_old IN VARCHAR, denumire_localitate_new IN VARCHAR, republica_id IN NUMBER) IS
+     BEGIN
+            UPDATE LOCALITATI SET DENUMIRE = denumire_localitate_new WHERE DENUMIRE = denumire_localitate_old and id_republica = republica_id;
+    END Update_Localitate;
+        
+    PROCEDURE Delete_Localitate(denumire_localitate IN VARCHAR, republica_id IN NUMBER) IS
+    BEGIN
+            DELETE FROM LOCALITATI WHERE DENUMIRE = denumire_localitate and id_republica = republica_id;
+    END Delete_Localitate;
+    
+   PROCEDURE Insert_Localitate(denumire_localitate IN VARCHAR, republica_id IN NUMBER) IS
+       BEGIN
+            INSERT INTO LOCALITATI(DENUMIRE, ID_REPUBLICA) 
+                VALUES (denumire_localitate, republica_id);
+       END Insert_Localitate;
+   
+   PROCEDURE Select_Localitati(localitatile OUT SYS_REFCURSOR) IS
+        BEGIN
+        OPEN localitatile FOR SELECT 
+                    loc.DENUMIRE as DENUMIRE,
+                    loc.ID_REPUBLICA as ID_REPUBLICA
+                    FROM LOCALITATI loc;
+    END Select_Localitati;
+    
+   PROCEDURE Get_Id_Localitate(denumire_localitate IN VARCHAR, republica_id IN NUMBER, localitate_id OUT NUMBER) IS
+   BEGIN
+        select id_localitate into localitate_id from localitati where denumire= denumire_localitate and id_republica=republica_id;
+   END Get_Id_Localitate;
+   PROCEDURE Get_Localitate_Republica_By_Id(localitate_id IN NUMBER, republica_den OUT VARCHAR, localitate_den OUT VARCHAR) IS
+        id_rep NUMBER;
+   BEGIN
+        select denumire, id_republica into localitate_den,id_rep from localitati where id_localitate = localitate_id;
+        select denumire into republica_den from republici where id_republica = id_rep;
+   END Get_Localitate_Republica_By_Id;
+END Utils_Localitati;
+
+/
+
+create or replace PACKAGE Utils_DetaliiC IS
+   PROCEDURE Update_DetaliiC(obiect_id IN NUMBER, deportat_id IN NUMBER, cant IN NUMBER, status IN NUMBER, toUpdate IN NUMBER);
+   PROCEDURE Update_DetaliiC_NoCheck(obiect_id IN NUMBER, deportat_id IN NUMBER, cant IN NUMBER, status IN NUMBER, toUpdate IN NUMBER);
+   PROCEDURE Delete_DetaliiC(obiect_id IN NUMBER, deportat_id IN NUMBER);
+   PROCEDURE Delete_AllDetaliiC(deportat_id IN NUMBER);
+   PROCEDURE Insert_DetaliiC(obiect_id IN NUMBER, cant IN NUMBER, status IN NUMBER, deportat_id IN NUMBER);
+   PROCEDURE Select_DetaliiC(deportat_id IN NUMBER, detalii OUT SYS_REFCURSOR);
+   PROCEDURE Select_One_DetaliiC(deportat_id IN NUMBER, obiect_id IN NUMBER, status OUT NUMBER, cant OUT NUMBER);
+END Utils_DetaliiC;
+/
+create or replace PACKAGE BODY Utils_DetaliiC as
+     PROCEDURE Update_DetaliiC(obiect_id IN NUMBER, deportat_id IN NUMBER, cant IN NUMBER, status IN NUMBER, toUpdate IN NUMBER) IS
+        oname OBIECTE.DENUMIRE%TYPE;
+        ostatus DETALIICONFISCARI.STARE%TYPE;
+        finalStatus DETALIICONFISCARI.STARE%TYPE;
+        data_reab DATE;
+     BEGIN
+        SAVEPOINT startOp;
+        if toUpdate = 2 then
+            finalStatus := status;
+            select STARE into ostatus from DETALIICONFISCARI where ID_DEPORTAT = deportat_id and ID_OBIECT = obiect_id;
+            select DATA_REABILITARE into data_reab from DETALIIDEPORTARE where ID_DEPORTAT = deportat_id;
+            IF data_reab IS NOT NULL THEN
+                IF (status = 0 and ostatus = 1) or (status = 2 AND ostatus = 1) THEN
+                    UTILS_OBIECTE.Get_Obiect_By_Id(oname, obiect_id);
+                    UPDATE DETALIIDEPORTARE SET OBIECTE_PIERDUTE = REPLACE(OBIECTE_PIERDUTE, ', '||oname,'') WHERE  ID_DEPORTAT = deportat_id;
+                    finalStatus := 2;
+                ELSIF status = 1 AND ostatus <> 1 THEN
+                    UTILS_OBIECTE.Get_Obiect_By_Id(oname, obiect_id);
+                    UPDATE DETALIIDEPORTARE SET OBIECTE_PIERDUTE = OBIECTE_PIERDUTE || ', '||oname WHERE  ID_DEPORTAT = deportat_id;                
+                END IF;
+            ELSE
+                IF status = 2 THEN
+                    finalStatus := 0;
+                END IF;
+            END IF;
+        end if;
+        Utils_DetaliiC.Update_DetaliiC_NoCheck(obiect_id, deportat_id, cant, finalStatus, toUpdate);
+        
+        EXCEPTION
+        WHEN OTHERS THEN
+            ROLLBACK TO SAVEPOINT startOp;
+            RAISE;            
+    END Update_DetaliiC;
+    
+    PROCEDURE Update_DetaliiC_NoCheck(obiect_id IN NUMBER, deportat_id IN NUMBER, cant IN NUMBER, status IN NUMBER, toUpdate IN NUMBER) IS
+     BEGIN
+        if toUpdate = 1 then
+            UPDATE DETALIICONFISCARI SET CANTITATE = cant WHERE id_obiect = obiect_id and id_deportat = deportat_id;
+        elsif toUpdate = 2 then
+            UPDATE DETALIICONFISCARI SET STARE = status WHERE id_obiect = obiect_id and id_deportat = deportat_id;
+        end if;
+    END Update_DetaliiC_NoCheck;
+        
+    PROCEDURE Delete_DetaliiC(obiect_id IN NUMBER, deportat_id IN NUMBER) IS
+        ostatus DETALIICONFISCARI.STARE%TYPE;
+        data_reab DATE;
+        oname OBIECTE.DENUMIRE%TYPE;
+    BEGIN
+        SAVEPOINT startOp;
+        select STARE into ostatus from DETALIICONFISCARI where ID_DEPORTAT = deportat_id and ID_OBIECT = obiect_id;
+        IF ostatus = 1 THEN
+            select DATA_REABILITARE into data_reab from DETALIIDEPORTARE where ID_DEPORTAT = deportat_id;
+            IF data_reab IS NOT NULL THEN
+                UTILS_OBIECTE.Get_Obiect_By_Id(oname, obiect_id);
+                UPDATE DETALIIDEPORTARE SET OBIECTE_PIERDUTE = REPLACE(OBIECTE_PIERDUTE, ', '||oname,'') WHERE  ID_DEPORTAT = deportat_id;
+            END IF;
+        END IF;
+        DELETE FROM DETALIICONFISCARI WHERE id_obiect = obiect_id and id_deportat = deportat_id;
+        EXCEPTION
+        WHEN OTHERS THEN
+            ROLLBACK TO SAVEPOINT startOp;
+            RAISE;
+    END Delete_DetaliiC;
+    
+    PROCEDURE Delete_AllDetaliiC(deportat_id IN NUMBER) IS
+    BEGIN
+        DELETE FROM DETALIICONFISCARI WHERE id_deportat = deportat_id;
+    END Delete_AllDetaliiC;
+    
+   PROCEDURE Insert_DetaliiC(obiect_id IN NUMBER, cant IN NUMBER, status IN NUMBER, deportat_id IN NUMBER) IS
+        data_reab DATE;
+        oname OBIECTE.DENUMIRE%TYPE;
+        finalStatus DETALIICONFISCARI.STARE%TYPE;
+   BEGIN
+        SAVEPOINT startOp;
+        finalStatus:=status;
+        select DATA_REABILITARE into data_reab from DETALIIDEPORTARE where ID_DEPORTAT = deportat_id;
+        IF data_reab IS NOT NULL THEN
+            IF status = 1 THEN
+                UTILS_OBIECTE.Get_Obiect_By_Id(oname, obiect_id);
+                UPDATE DETALIIDEPORTARE SET OBIECTE_PIERDUTE = OBIECTE_PIERDUTE || ', '||oname WHERE  ID_DEPORTAT = deportat_id;                
+            ELSIF status = 0 THEN
+                finalStatus := 2;
+            END IF;
+        ELSE
+            IF status = 2 THEN
+                finalStatus := 0; 
+            END IF;
+        END IF;
+        
+        INSERT INTO DETALIICONFISCARI(ID_OBIECT, CANTITATE, STARE, ID_DEPORTAT) 
+            VALUES (obiect_id, cant, finalStatus, deportat_id);
+        
+        EXCEPTION
+        WHEN OTHERS THEN
+            ROLLBACK TO SAVEPOINT startOp;
+            RAISE;
+   END Insert_DetaliiC;
+   
+   
+   PROCEDURE Select_One_DetaliiC(deportat_id IN NUMBER, obiect_id IN NUMBER, status OUT NUMBER, cant OUT NUMBER) IS
+   BEGIN
+        select stare,cantitate into status,cant from DETALIICONFISCARI where id_deportat=deportat_id and id_obiect=obiect_id;
+   END Select_One_DetaliiC;
+   
+   PROCEDURE Select_DetaliiC(deportat_id IN NUMBER, detalii OUT SYS_REFCURSOR) IS
+   BEGIN
+        OPEN detalii FOR SELECT 
+                    det.ID_OBIECT as ID_OBIECT,
+                    det.CANTITATE as CANTITATE,
+                    det.STARE as STARE,
+                    det.ID_DEPORTAT as ID_DEPORTAT
+                    FROM DETALIICONFISCARI det where det.ID_DEPORTAT = deportat_id;
+   
+   END Select_DetaliiC;
+END Utils_DetaliiC;
+
+
+create or replace PACKAGE Utils_DetaliiD IS
+   PROCEDURE Update_DetaliiD(deportat_id IN NUMBER, dreabilitare IN DATE, ddeportare IN DATE, id_loc_dept IN NUMBER, id_loc_reab IN NUMBER, toUpdate IN NUMBER);
+   PROCEDURE Update_Reabl_DetaliiD(deportat_id IN NUMBER, dreabilitare IN DATE, id_loc_reab IN NUMBER);
+   PROCEDURE Delete_DetaliiD(deportat_id IN NUMBER);
+   PROCEDURE Insert_DetaliiD(deportat_id IN NUMBER, dreabilitare IN DATE, ddeportare IN DATE, id_loc_dept IN NUMBER, id_loc_reab IN NUMBER);
+   PROCEDURE Get_DetaliiD(deportat_id IN NUMBER, detalii OUT SYS_REFCURSOR);
+END Utils_DetaliiD;
+/
+create or replace PACKAGE BODY Utils_DetaliiD as
+   PROCEDURE Update_DetaliiD(deportat_id IN NUMBER, dreabilitare IN DATE, ddeportare IN DATE, id_loc_dept IN NUMBER, id_loc_reab IN NUMBER, toUpdate IN NUMBER) IS
+        reab_date Date;
+        reab_loc DETALIIDEPORTARE.ID_LOCALITATE_REABILITARE%TYPE;
+   BEGIN
+        if toUpdate = 1 then 
+            select ID_LOCALITATE_REABILITARE into reab_loc from DETALIIDEPORTARE where ID_DEPORTAT = deportat_id;
+            IF (reab_loc is null and dreabilitare is not null) or (reab_loc is not null and dreabilitare is null)
+            THEN
+                RAISE_APPLICATION_ERROR (-20500,'Stare invalida pentru data reabilitare si localitate reabilitare');
+            END IF;
+            UPDATE DETALIIDEPORTARE SET DATA_REABILITARE = dreabilitare WHERE id_deportat = deportat_id;
+        elsif toUpdate = 2 then
+            UPDATE DETALIIDEPORTARE SET DATA_DEPORTARE = ddeportare WHERE id_deportat = deportat_id;
+        elsif toUpdate = 3 then
+            UPDATE DETALIIDEPORTARE SET ID_LOCALITATE_DEPORTARE = id_loc_dept WHERE id_deportat = deportat_id;
+        elsif toUpdate = 4 then
+            select DATA_REABILITARE into reab_date from DETALIIDEPORTARE where ID_DEPORTAT = deportat_id;
+            IF (reab_date is null and id_loc_reab is not null) or (reab_date is not null and id_loc_reab is null)
+            THEN
+                RAISE_APPLICATION_ERROR (-20500,'Stare invalida pentru data reabilitare si localitate reabilitare');
+            END IF;
+            UPDATE DETALIIDEPORTARE SET ID_LOCALITATE_REABILITARE = id_loc_reab WHERE id_deportat = deportat_id;
+        end if;
+    END Update_DetaliiD;
+        
+    PROCEDURE Update_Reabl_DetaliiD(deportat_id IN NUMBER, dreabilitare IN DATE, id_loc_reab IN NUMBER) IS
+    BEGIN
+        IF (dreabilitare is null and id_loc_reab is not null) or (dreabilitare is not null and id_loc_reab is null)
+        THEN
+            RAISE_APPLICATION_ERROR (-20500,'Stare invalida pentru data reabilitare si localitate reabilitare');
+        END IF; 
+        UPDATE DETALIIDEPORTARE SET DATA_REABILITARE = dreabilitare, ID_LOCALITATE_REABILITARE = id_loc_reab WHERE id_deportat = deportat_id;
+    END Update_Reabl_DetaliiD;
+        
+    PROCEDURE Delete_DetaliiD(deportat_id IN NUMBER) IS
+    BEGIN
+        DELETE FROM DETALIIDEPORTARE WHERE id_deportat = deportat_id;
+    END Delete_DetaliiD;
+    
+   PROCEDURE Insert_DetaliiD(deportat_id IN NUMBER, dreabilitare IN DATE, ddeportare IN DATE, id_loc_dept IN NUMBER, id_loc_reab IN NUMBER) IS
+   BEGIN
+        IF (dreabilitare is null and id_loc_reab is not null) or (dreabilitare is not null and id_loc_reab is null)
+        THEN
+            RAISE_APPLICATION_ERROR (-20500,'Stare invalida pentru data reabilitare si localitate reabilitare');
+        END IF;
+        INSERT INTO DETALIIDEPORTARE(DATA_REABILITARE,DATA_DEPORTARE,ID_DEPORTAT,ID_LOCALITATE_DEPORTARE,ID_LOCALITATE_REABILITARE) 
+            VALUES (dreabilitare, ddeportare, deportat_id, id_loc_dept, id_loc_reab) ;
+   END Insert_DetaliiD;
+   
+   PROCEDURE Get_DetaliiD(deportat_id IN NUMBER, detalii OUT SYS_REFCURSOR) IS
+   BEGIN
+        OPEN detalii FOR SELECT 
+            det.DATA_REABILITARE as DATA_REABILITARE,
+            det.DATA_DEPORTARE as DATA_DEPORTARE,
+            det.ID_DEPORTAT as ID_DEPORTAT,
+            det.ID_LOCALITATE_DEPORTARE as ID_LOCALITATE_DEPORTARE,
+            det.ID_LOCALITATE_REABILITARE as ID_LOCALITATE_REABILITARE,
+            det.OBIECTE_PIERDUTE as OBIECTE_PIERDUTE
+            FROM DETALIIDEPORTARE det where det.ID_DEPORTAT = deportat_id;
+   
+   END Get_DetaliiD;
+END Utils_DetaliiD;

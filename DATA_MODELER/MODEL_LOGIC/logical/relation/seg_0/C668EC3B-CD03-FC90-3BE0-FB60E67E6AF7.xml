@@ -1,0 +1,21 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="FK_Dep_ToLocalitati" directorySegmentName="seg_0" id="C668EC3B-CD03-FC90-3BE0-FB60E67E6AF7">
+<createdBy>Cristian</createdBy>
+<createdTime>2018-10-22 09:51:03 UTC</createdTime>
+<ownerDesignName>MODEL_LOGIC</ownerDesignName>
+<engineerTo>
+<item key="2CE9DB50-65BF-4FFE-FEF9-525B48C8493E" value="true"/>
+</engineerTo>
+<sourcePk>7FC2EE9C-B7FC-970B-6086-2BC235DA8685</sourcePk>
+<identifying>false</identifying>
+<nameOnSource>bastina lui</nameOnSource>
+<nameOnTarget>nascut in</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>F5815EFC-7628-6D5C-01CE-AB51A03AC7EE</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>5FCC8059-5FD5-62EF-95FC-DE1484D9654A</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+</Relation>

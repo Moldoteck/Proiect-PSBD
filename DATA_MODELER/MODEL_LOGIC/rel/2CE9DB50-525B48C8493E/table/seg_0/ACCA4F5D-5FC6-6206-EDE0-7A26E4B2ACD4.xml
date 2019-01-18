@@ -1,0 +1,152 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="ACCA4F5D-5FC6-6206-EDE0-7A26E4B2ACD4" name="DetaliiDeportare">
+<createdBy>Cristian</createdBy>
+<createdTime>2019-01-07 17:45:39 UTC</createdTime>
+<generatorID>33A0D849-3A73-E2D4-0A02-160F85AF57DF</generatorID>
+<ownerDesignName>MODEL_LOGIC</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="DATA_REABILITARE" id="3DE52DE7-1748-503B-9BFA-99E7D35B8EAE">
+<createdBy>Cristian</createdBy>
+<createdTime>2019-01-07 17:45:39 UTC</createdTime>
+<generatorID>FB2F23FA-6CE9-F087-7AD0-F7156CB3FEE1</generatorID>
+<ownerDesignName>MODEL_LOGIC</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<listOfRanges>
+<rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
+<beginValue>TO_DATE(&apos;1.1.1949&apos;, &apos;dd.mm.yyyy&apos;)</beginValue>
+<endValue>TO_DATE(&apos;1.1.2018&apos;, &apos;dd.mm.yyyy&apos;)</endValue>
+</rangeDef>
+</listOfRanges>
+</Column>
+<Column name="DATA_DEPORTARE" id="A96ED56C-2FEF-7F8A-11B0-550E6D68086A">
+<createdBy>Cristian</createdBy>
+<createdTime>2019-01-07 17:45:39 UTC</createdTime>
+<generatorID>4718E51A-A594-BB75-8BB0-0F574E782BE0</generatorID>
+<ownerDesignName>MODEL_LOGIC</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<listOfRanges>
+<rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
+<beginValue>TO_DATE(&apos;12.06.1941&apos;, &apos;dd.mm.yyyy&apos;)</beginValue>
+<endValue>TO_DATE(&apos;1.1.1949&apos;, &apos;dd.mm.yyyy&apos;)</endValue>
+</rangeDef>
+</listOfRanges>
+</Column>
+<Column name="ID_DEPORTAT" id="CCA4C083-164C-5AFA-5274-200CFA675332">
+<createdBy>Cristian</createdBy>
+<createdTime>2019-01-07 17:45:39 UTC</createdTime>
+<generatorID>E4CB8017-A001-7CF6-78CA-236D359BAC13</generatorID>
+<ownerDesignName>MODEL_LOGIC</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="C7566D05-DE30-53C0-BA5E-A43C8CA06896" referredColumn="C1CD314E-4876-1581-110B-BEE143653F6E"/>
+</associations>
+</Column>
+<Column name="ID_LOCALITATE_DEPORTARE" id="EF84FF27-B61F-1FC5-AFAB-479DEF6D25CD">
+<createdBy>Cristian</createdBy>
+<createdTime>2019-01-07 17:45:39 UTC</createdTime>
+<generatorID>BBC9A0B6-1001-1AB2-7C6D-E9B8E01B5C9E</generatorID>
+<ownerDesignName>MODEL_LOGIC</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="419BB73B-8EB3-8D15-FD8E-556392EF2A75" referredColumn="E719AC62-284D-8F4F-6007-4B61CDB67331"/>
+</associations>
+</Column>
+<Column name="ID_LOCALITATE_REABILITARE" id="EEFBE92E-7875-2673-7908-85C9E068BC68">
+<createdBy>Cristian</createdBy>
+<createdTime>2019-01-07 17:45:39 UTC</createdTime>
+<generatorID>4FD2E002-3314-03F7-85EE-9A8AB8746246</generatorID>
+<ownerDesignName>MODEL_LOGIC</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="6BE94513-62F3-EC6B-88E3-011114D69E3B" referredColumn="E719AC62-284D-8F4F-6007-4B61CDB67331"/>
+</associations>
+</Column>
+<Column name="OBIECTE_PIERDUTE" id="73CCB503-A764-818A-4F00-1BEEA45AEFC4">
+<createdBy>Cristian</createdBy>
+<createdTime>2019-01-07 17:45:39 UTC</createdTime>
+<generatorID>D1E7DD26-C356-4BE3-0F36-6D703E45CED3</generatorID>
+<ownerDesignName>MODEL_LOGIC</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>200</dataTypeSize>
+<ownDataTypeParameters>200,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="1D0A54E5-66AC-8A21-D4D4-1181FC483B6A" name="Key_1v1">
+<createdBy>Cristian</createdBy>
+<createdTime>2019-01-07 17:45:39 UTC</createdTime>
+<generatorID>439D6165-764C-B905-E498-1E1C4D519F7F</generatorID>
+<ownerDesignName>MODEL_LOGIC</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="CCA4C083-164C-5AFA-5274-200CFA675332"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="BFE8743D-8DC2-87A5-D020-BDDFD57BEBF9" name="FK_DD_ToDeportati">
+<createdBy>Cristian</createdBy>
+<createdTime>2019-01-07 17:45:39 UTC</createdTime>
+<generatorID>AC44F45D-4D71-CB0A-35A6-E333D20E29F8</generatorID>
+<ownerDesignName>MODEL_LOGIC</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="CCA4C083-164C-5AFA-5274-200CFA675332"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="9C3A72E2-B05C-1B09-D107-D65E219971F8" name="FK_DD_ToLocalitati1">
+<createdBy>Cristian</createdBy>
+<createdTime>2019-01-07 17:45:39 UTC</createdTime>
+<generatorID>6DAB20D0-2539-984D-367A-CF1ACCFED624</generatorID>
+<ownerDesignName>MODEL_LOGIC</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="EF84FF27-B61F-1FC5-AFAB-479DEF6D25CD"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="DD766C41-685D-2A8C-BF2F-CB2362F82E2F" name="FK_DD_ToLocalitati2">
+<createdBy>Cristian</createdBy>
+<createdTime>2019-01-07 17:45:39 UTC</createdTime>
+<generatorID>FEE25DDB-BB09-1A1D-BCB3-52E8B716B801</generatorID>
+<ownerDesignName>MODEL_LOGIC</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="EEFBE92E-7875-2673-7908-85C9E068BC68"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

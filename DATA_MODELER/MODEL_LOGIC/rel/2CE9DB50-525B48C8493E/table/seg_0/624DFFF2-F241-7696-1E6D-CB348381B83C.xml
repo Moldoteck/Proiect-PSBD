@@ -1,0 +1,89 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="624DFFF2-F241-7696-1E6D-CB348381B83C" name="Localitati">
+<createdBy>Cristian</createdBy>
+<createdTime>2019-01-07 17:45:39 UTC</createdTime>
+<generatorID>F5815EFC-7628-6D5C-01CE-AB51A03AC7EE</generatorID>
+<ownerDesignName>MODEL_LOGIC</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="ID_LOCALITATE" id="E719AC62-284D-8F4F-6007-4B61CDB67331">
+<createdBy>Cristian</createdBy>
+<createdTime>2019-01-07 17:45:39 UTC</createdTime>
+<generatorID>2A277603-892D-C3A3-4C3E-7E98D7AA39FB</generatorID>
+<ownerDesignName>MODEL_LOGIC</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="DENUMIRE" id="8C1A34F2-1DF6-57D5-C6B4-DC64E10B4D7E">
+<createdBy>Cristian</createdBy>
+<createdTime>2019-01-07 17:45:39 UTC</createdTime>
+<generatorID>D6BE087A-4979-E409-1BC6-A2DE17078372</generatorID>
+<ownerDesignName>MODEL_LOGIC</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>50</dataTypeSize>
+<ownDataTypeParameters>50,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ID_REPUBLICA" id="0A77BF2B-8F1B-DD5E-3723-0EDD33C0A920">
+<createdBy>Cristian</createdBy>
+<createdTime>2019-01-07 17:45:39 UTC</createdTime>
+<generatorID>61AB2057-E532-7089-3178-F913103F66A2</generatorID>
+<ownerDesignName>MODEL_LOGIC</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="42AB722F-83FE-1455-1AE8-E3B1AEBFA7C1" referredColumn="23E75F0C-2241-1938-94B1-2D9A47181D18"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="BF027106-2D1E-2560-B899-414241DDFA02" name="Localitati_PK">
+<createdBy>Cristian</createdBy>
+<createdTime>2019-01-07 17:45:39 UTC</createdTime>
+<generatorID>7FC2EE9C-B7FC-970B-6086-2BC235DA8685</generatorID>
+<ownerDesignName>MODEL_LOGIC</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="E719AC62-284D-8F4F-6007-4B61CDB67331"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="0C55C9E9-D24F-EEBB-CA23-B8C7F7462043" name="Localitati_Denumire_PK">
+<createdBy>Cristian</createdBy>
+<createdTime>2019-01-07 17:45:39 UTC</createdTime>
+<generatorID>ACCD0D3E-86A7-7D63-ADA7-5695AD31E60A</generatorID>
+<ownerDesignName>MODEL_LOGIC</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="8C1A34F2-1DF6-57D5-C6B4-DC64E10B4D7E"/>
+<colUsage columnID="0A77BF2B-8F1B-DD5E-3723-0EDD33C0A920"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="0A150F1A-52D2-4A85-4F6A-0764F116828A" name="FK_Loc_ToRepublici">
+<createdBy>Cristian</createdBy>
+<createdTime>2019-01-07 17:45:39 UTC</createdTime>
+<generatorID>813723F8-AF31-960A-8141-CB28BC1E2FDA</generatorID>
+<ownerDesignName>MODEL_LOGIC</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="0A77BF2B-8F1B-DD5E-3723-0EDD33C0A920"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

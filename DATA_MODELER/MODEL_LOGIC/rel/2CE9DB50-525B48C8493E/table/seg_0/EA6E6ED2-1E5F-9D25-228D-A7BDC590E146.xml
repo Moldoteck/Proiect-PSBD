@@ -1,0 +1,62 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="EA6E6ED2-1E5F-9D25-228D-A7BDC590E146" name="Republici">
+<createdBy>Cristian</createdBy>
+<createdTime>2019-01-07 17:45:39 UTC</createdTime>
+<generatorID>5DC109B9-B1FB-86F6-1DD4-624B2FF56685</generatorID>
+<ownerDesignName>MODEL_LOGIC</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="ID_REPUBLICA" id="23E75F0C-2241-1938-94B1-2D9A47181D18">
+<createdBy>Cristian</createdBy>
+<createdTime>2019-01-07 17:45:39 UTC</createdTime>
+<generatorID>2A8C5153-CD0F-A1A3-217A-60BD16C7B2DD</generatorID>
+<ownerDesignName>MODEL_LOGIC</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="DENUMIRE" id="1AFBE226-EB26-EF45-9259-F0FD8DE39CE1">
+<createdBy>Cristian</createdBy>
+<createdTime>2019-01-07 17:45:39 UTC</createdTime>
+<generatorID>607E9865-061D-4B58-AD3B-D65A7AB5C850</generatorID>
+<ownerDesignName>MODEL_LOGIC</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>50</dataTypeSize>
+<ownDataTypeParameters>50,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="6E959FCA-D4B0-3A3B-B5A0-64B9266F3B63" name="Republici_PK">
+<createdBy>Cristian</createdBy>
+<createdTime>2019-01-07 17:45:39 UTC</createdTime>
+<generatorID>12459327-9C90-C57E-41D7-094717CCE0F5</generatorID>
+<ownerDesignName>MODEL_LOGIC</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="23E75F0C-2241-1938-94B1-2D9A47181D18"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="7D8C52C0-0227-D88F-EB6F-F14DAF10D56C" name="Republici_Denumire_PK">
+<createdBy>Cristian</createdBy>
+<createdTime>2019-01-07 17:45:39 UTC</createdTime>
+<generatorID>23F8CA7D-4299-2A52-334B-0295F90BA3C8</generatorID>
+<ownerDesignName>MODEL_LOGIC</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="1AFBE226-EB26-EF45-9259-F0FD8DE39CE1"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

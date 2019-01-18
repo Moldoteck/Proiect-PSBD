@@ -1,0 +1,17 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="419BB73B-8EB3-8D15-FD8E-556392EF2A75" containerWithKeyObject="ACCA4F5D-5FC6-6206-EDE0-7A26E4B2ACD4" localFKIndex="9C3A72E2-B05C-1B09-D107-D65E219971F8" name="FK_DD_ToLocalitati1">
+<createdBy>Cristian</createdBy>
+<createdTime>2019-01-07 17:45:39 UTC</createdTime>
+<generatorID>6DAB20D0-2539-984D-367A-CF1ACCFED624</generatorID>
+<ownerDesignName>MODEL_LOGIC</ownerDesignName>
+<referredTableLongName>Localitati</referredTableLongName>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>624DFFF2-F241-7696-1E6D-CB348381B83C</referredTableID>
+<keyObject>BF027106-2D1E-2560-B899-414241DDFA02</keyObject>
+<referredKeyID>BF027106-2D1E-2560-B899-414241DDFA02</referredKeyID>
+<mandatory>true</mandatory>
+<refColNames>ID_LOCALITATE</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

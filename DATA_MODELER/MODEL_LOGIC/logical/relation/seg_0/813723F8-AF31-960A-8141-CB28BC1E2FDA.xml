@@ -1,0 +1,21 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="FK_Loc_ToRepublici" directorySegmentName="seg_0" id="813723F8-AF31-960A-8141-CB28BC1E2FDA">
+<createdBy>Cristian</createdBy>
+<createdTime>2018-10-15 12:33:51 UTC</createdTime>
+<ownerDesignName>MODEL_LOGIC</ownerDesignName>
+<engineerTo>
+<item key="2CE9DB50-65BF-4FFE-FEF9-525B48C8493E" value="true"/>
+</engineerTo>
+<sourcePk>12459327-9C90-C57E-41D7-094717CCE0F5</sourcePk>
+<identifying>false</identifying>
+<nameOnSource>contin</nameOnSource>
+<nameOnTarget>sunt in</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>5DC109B9-B1FB-86F6-1DD4-624B2FF56685</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>F5815EFC-7628-6D5C-01CE-AB51A03AC7EE</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+</Relation>

@@ -1,0 +1,59 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TableProxyOraclev12c class="oracle.dbtools.crest.model.design.storage.oracle.v12c.TableProxyOraclev12c" name="Deportati" directorySegmentName="seg_0" id="61285AA9-D945-D267-D415-0C30B4D6C41F">
+<createdBy>Cristian</createdBy>
+<createdTime>2019-01-07 17:45:39 UTC</createdTime>
+<ownerDesignName>MODEL_LOGIC</ownerDesignName>
+<logging>YES</logging>
+<partitionedRowMovement>DISABLE</partitionedRowMovement>
+<temporaryChanged>false</temporaryChanged>
+<accessDriverType>oracle_loader</accessDriverType>
+<rejectLimit></rejectLimit>
+<columnProxies itemClass="oracle.dbtools.crest.model.design.storage.oracle.v12c.ColumnProxyOraclev12c">
+<ColumnProxy name="DATA_NASTERII" id="0F120F40-CDC5-5342-C890-DF6962345C63">
+<createdBy>Cristian</createdBy>
+<createdTime>2019-01-07 17:45:39 UTC</createdTime>
+<ownerDesignName>MODEL_LOGIC</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="ID_LOCALITATE" id="1DBA98ED-7359-A89B-71A4-7EBD98347368">
+<createdBy>Cristian</createdBy>
+<createdTime>2019-01-07 17:45:39 UTC</createdTime>
+<ownerDesignName>MODEL_LOGIC</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="NUME" id="5C9FA14C-718F-96E6-7056-890BE831216B">
+<createdBy>Cristian</createdBy>
+<createdTime>2019-01-07 17:45:39 UTC</createdTime>
+<ownerDesignName>MODEL_LOGIC</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="PRENUME" id="6AEDB5EA-E938-E293-AAC8-834689278353">
+<createdBy>Cristian</createdBy>
+<createdTime>2019-01-07 17:45:39 UTC</createdTime>
+<ownerDesignName>MODEL_LOGIC</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="ID_DEPORTAT" id="C1CD314E-4876-1581-110B-BEE143653F6E">
+<createdBy>Cristian</createdBy>
+<createdTime>2019-01-07 17:45:39 UTC</createdTime>
+<ownerDesignName>MODEL_LOGIC</ownerDesignName>
+<autoIncrementDDL>IDENTITY_CLAUSE</autoIncrementDDL>
+</ColumnProxy>
+<ColumnProxy name="DATA_DECES" id="D160E8F5-8BAE-8822-C1D0-6B882E89BE60">
+<createdBy>Cristian</createdBy>
+<createdTime>2019-01-07 17:45:39 UTC</createdTime>
+<ownerDesignName>MODEL_LOGIC</ownerDesignName>
+</ColumnProxy>
+</columnProxies>
+<foreignKeys>
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="FK_Dep_ToLocalitati" id="4B65D6C6-E9AE-2C77-C156-6348AD42EACD">
+<createdBy>Cristian</createdBy>
+<createdTime>2019-01-07 17:45:39 UTC</createdTime>
+<ownerDesignName>MODEL_LOGIC</ownerDesignName>
+</ForeignKey>
+</foreignKeys>
+<primaryKeys>
+<PrimaryKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.PKProxyOraclev10g" name="Deportati_PK" id="623B08BD-B928-D4D8-D894-663B528719A6">
+<createdBy>Cristian</createdBy>
+<createdTime>2019-01-07 17:45:39 UTC</createdTime>
+<ownerDesignName>MODEL_LOGIC</ownerDesignName>
+<indexSort>SORTED</indexSort>
+</PrimaryKey>
+</primaryKeys>
+</TableProxyOraclev12c>

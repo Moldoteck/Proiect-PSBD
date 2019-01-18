@@ -1,0 +1,21 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="FK_DD_ToLocalitati2" directorySegmentName="seg_0" id="FEE25DDB-BB09-1A1D-BCB3-52E8B716B801">
+<createdBy>Cristian</createdBy>
+<createdTime>2018-10-22 09:48:37 UTC</createdTime>
+<ownerDesignName>MODEL_LOGIC</ownerDesignName>
+<engineerTo>
+<item key="2CE9DB50-65BF-4FFE-FEF9-525B48C8493E" value="true"/>
+</engineerTo>
+<sourcePk>7FC2EE9C-B7FC-970B-6086-2BC235DA8685</sourcePk>
+<identifying>false</identifying>
+<nameOnSource>continut in</nameOnSource>
+<nameOnTarget>deportat spre</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>true</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>F5815EFC-7628-6D5C-01CE-AB51A03AC7EE</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>33A0D849-3A73-E2D4-0A02-160F85AF57DF</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+</Relation>

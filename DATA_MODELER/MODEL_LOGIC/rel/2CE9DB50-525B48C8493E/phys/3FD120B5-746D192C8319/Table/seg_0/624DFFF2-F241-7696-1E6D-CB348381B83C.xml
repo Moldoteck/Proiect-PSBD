@@ -1,0 +1,52 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TableProxyOraclev12c class="oracle.dbtools.crest.model.design.storage.oracle.v12c.TableProxyOraclev12c" name="Localitati" directorySegmentName="seg_0" id="624DFFF2-F241-7696-1E6D-CB348381B83C">
+<createdBy>Cristian</createdBy>
+<createdTime>2019-01-07 17:45:39 UTC</createdTime>
+<ownerDesignName>MODEL_LOGIC</ownerDesignName>
+<logging>YES</logging>
+<partitionedRowMovement>DISABLE</partitionedRowMovement>
+<temporaryChanged>false</temporaryChanged>
+<accessDriverType>oracle_loader</accessDriverType>
+<rejectLimit></rejectLimit>
+<columnProxies itemClass="oracle.dbtools.crest.model.design.storage.oracle.v12c.ColumnProxyOraclev12c">
+<ColumnProxy name="ID_REPUBLICA" id="0A77BF2B-8F1B-DD5E-3723-0EDD33C0A920">
+<createdBy>Cristian</createdBy>
+<createdTime>2019-01-07 17:45:39 UTC</createdTime>
+<ownerDesignName>MODEL_LOGIC</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="DENUMIRE" id="8C1A34F2-1DF6-57D5-C6B4-DC64E10B4D7E">
+<createdBy>Cristian</createdBy>
+<createdTime>2019-01-07 17:45:39 UTC</createdTime>
+<ownerDesignName>MODEL_LOGIC</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="ID_LOCALITATE" id="E719AC62-284D-8F4F-6007-4B61CDB67331">
+<createdBy>Cristian</createdBy>
+<createdTime>2019-01-07 17:45:39 UTC</createdTime>
+<ownerDesignName>MODEL_LOGIC</ownerDesignName>
+<autoIncrementDDL>IDENTITY_CLAUSE</autoIncrementDDL>
+</ColumnProxy>
+</columnProxies>
+<foreignKeys>
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="FK_Loc_ToRepublici" id="0A150F1A-52D2-4A85-4F6A-0764F116828A">
+<createdBy>Cristian</createdBy>
+<createdTime>2019-01-07 17:45:39 UTC</createdTime>
+<ownerDesignName>MODEL_LOGIC</ownerDesignName>
+</ForeignKey>
+</foreignKeys>
+<primaryKeys>
+<PrimaryKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.PKProxyOraclev10g" name="Localitati_PK" id="BF027106-2D1E-2560-B899-414241DDFA02">
+<createdBy>Cristian</createdBy>
+<createdTime>2019-01-07 17:45:39 UTC</createdTime>
+<ownerDesignName>MODEL_LOGIC</ownerDesignName>
+<indexSort>SORTED</indexSort>
+</PrimaryKey>
+</primaryKeys>
+<uniqueKeys>
+<UniqueKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.UniqueOraclev10g" name="Localitati_Denumire_PK" id="0C55C9E9-D24F-EEBB-CA23-B8C7F7462043">
+<createdBy>Cristian</createdBy>
+<createdTime>2019-01-07 17:45:39 UTC</createdTime>
+<ownerDesignName>MODEL_LOGIC</ownerDesignName>
+<indexSort>SORTED</indexSort>
+</UniqueKey>
+</uniqueKeys>
+</TableProxyOraclev12c>

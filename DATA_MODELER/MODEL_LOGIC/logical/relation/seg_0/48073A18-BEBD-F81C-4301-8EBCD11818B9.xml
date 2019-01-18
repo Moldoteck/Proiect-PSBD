@@ -1,0 +1,21 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="FK_DC_ToDeportati" directorySegmentName="seg_0" id="48073A18-BEBD-F81C-4301-8EBCD11818B9">
+<createdBy>Cristian</createdBy>
+<createdTime>2018-10-15 12:48:07 UTC</createdTime>
+<ownerDesignName>MODEL_LOGIC</ownerDesignName>
+<engineerTo>
+<item key="2CE9DB50-65BF-4FFE-FEF9-525B48C8493E" value="true"/>
+</engineerTo>
+<sourcePk>E99289FD-3250-513F-82F9-A78DFD3988EE</sourcePk>
+<identifying>false</identifying>
+<nameOnSource>are</nameOnSource>
+<nameOnTarget>sunt ale</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>5FCC8059-5FD5-62EF-95FC-DE1484D9654A</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>DAB12F05-F823-FF93-31F8-E82C0BF3FE04</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+</Relation>

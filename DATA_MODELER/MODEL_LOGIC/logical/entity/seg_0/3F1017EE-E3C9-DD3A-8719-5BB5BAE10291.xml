@@ -1,0 +1,70 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="3F1017EE-E3C9-DD3A-8719-5BB5BAE10291" name="Obiecte">
+<createdBy>Cristian</createdBy>
+<createdTime>2018-10-15 12:24:40 UTC</createdTime>
+<ownerDesignName>MODEL_LOGIC</ownerDesignName>
+<engineerTo>
+<item key="2CE9DB50-65BF-4FFE-FEF9-525B48C8493E" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="ID_OBIECT" id="8C828237-AC17-4545-D080-70CA4B5B9989">
+<createdBy>Cristian</createdBy>
+<createdTime>2018-10-15 12:24:49 UTC</createdTime>
+<ownerDesignName>MODEL_LOGIC</ownerDesignName>
+<engineerTo>
+<item key="2CE9DB50-65BF-4FFE-FEF9-525B48C8493E" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="DENUMIRE" id="F1EFD9C7-5E9F-7949-2DC4-D123158D73E9">
+<createdBy>Cristian</createdBy>
+<createdTime>2018-10-15 12:25:16 UTC</createdTime>
+<ownerDesignName>MODEL_LOGIC</ownerDesignName>
+<engineerTo>
+<item key="2CE9DB50-65BF-4FFE-FEF9-525B48C8493E" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>50</dataTypeSize>
+<ownDataTypeParameters>50,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="AB675955-A482-4926-4D1D-A72D781D80D0" name="Obiecte PK">
+<createdBy>Cristian</createdBy>
+<createdTime>2018-10-15 12:25:13 UTC</createdTime>
+<ownerDesignName>MODEL_LOGIC</ownerDesignName>
+<engineerTo>
+<item key="2CE9DB50-65BF-4FFE-FEF9-525B48C8493E" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>8C828237-AC17-4545-D080-70CA4B5B9989</attributeRef>
+</usedAttributes>
+</identifier>
+<identifier id="B6DC3F54-B840-DDEC-7416-D1BEDDEFA632" name="Obiecte_Denumire_PK">
+<createdBy>Cristian</createdBy>
+<createdTime>2018-10-15 12:26:02 UTC</createdTime>
+<ownerDesignName>MODEL_LOGIC</ownerDesignName>
+<engineerTo>
+<item key="2CE9DB50-65BF-4FFE-FEF9-525B48C8493E" value="true"/>
+</engineerTo>
+<newElementsIDs>F1EFD9C7-5E9F-7949-2DC4-D123158D73E9</newElementsIDs>
+<usedAttributes>
+<attributeRef>F1EFD9C7-5E9F-7949-2DC4-D123158D73E9</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

@@ -1,0 +1,113 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="7F7FD04A-CD87-3E83-CD6C-B16D12C69BC0" name="DetaliiConfiscari">
+<createdBy>Cristian</createdBy>
+<createdTime>2019-01-07 17:45:39 UTC</createdTime>
+<generatorID>DAB12F05-F823-FF93-31F8-E82C0BF3FE04</generatorID>
+<ownerDesignName>MODEL_LOGIC</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="ID_OBIECT" id="95AFD445-0C87-055D-785F-0AE3C8818D0B">
+<createdBy>Cristian</createdBy>
+<createdTime>2019-01-07 17:45:39 UTC</createdTime>
+<generatorID>2D58ACB5-54D0-6D86-F9C0-C1BEDB00389C</generatorID>
+<ownerDesignName>MODEL_LOGIC</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="5582E2EC-EF62-7D48-F8F6-27799BF18447" referredColumn="6872CC96-5328-B79F-9AD7-B3CB2DF0AE0B"/>
+</associations>
+</Column>
+<Column name="CANTITATE" id="CF398E3E-7CEF-3398-13E8-9FE576714B51">
+<createdBy>Cristian</createdBy>
+<createdTime>2019-01-07 17:45:39 UTC</createdTime>
+<generatorID>3F66EA1F-AA41-78A7-A9FC-5232A27362BE</generatorID>
+<ownerDesignName>MODEL_LOGIC</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<defaultValue>1</defaultValue>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<listOfRanges>
+<rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
+<beginValue>1</beginValue>
+<endValue>999</endValue>
+</rangeDef>
+</listOfRanges>
+</Column>
+<Column name="STARE" id="4FBB7444-0FEE-9B8A-C352-2E110736F81A">
+<createdBy>Cristian</createdBy>
+<createdTime>2019-01-07 17:45:39 UTC</createdTime>
+<generatorID>0E0F2F5B-AE39-2B0E-592B-8ACF00FB279E</generatorID>
+<ownerDesignName>MODEL_LOGIC</ownerDesignName>
+<constraintName>Values_CK</constraintName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<listOfValues>
+<valueDef value="0" description="La stat"/>
+<valueDef value="1" description="Pierdut"/>
+<valueDef value="2" description="Returnat"/>
+</listOfValues>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ID_DEPORTAT" id="240442A8-915F-F809-771D-82E3237F4A4B">
+<createdBy>Cristian</createdBy>
+<createdTime>2019-01-07 17:45:39 UTC</createdTime>
+<generatorID>9AF1FC84-6EC6-61C8-6748-25F00862C8F1</generatorID>
+<ownerDesignName>MODEL_LOGIC</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="1220D8E2-A0CF-26C8-9222-8BDB3BB463A3" referredColumn="C1CD314E-4876-1581-110B-BEE143653F6E"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="7880EE70-6295-776D-419C-9DE0AB71BEAE" name="Key_1">
+<createdBy>Cristian</createdBy>
+<createdTime>2019-01-07 17:45:39 UTC</createdTime>
+<generatorID>CC8D1F42-2D2E-9FBC-76FB-A8544A135516</generatorID>
+<ownerDesignName>MODEL_LOGIC</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="240442A8-915F-F809-771D-82E3237F4A4B"/>
+<colUsage columnID="95AFD445-0C87-055D-785F-0AE3C8818D0B"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="63D18163-1553-7438-1ACF-B078351B0FA6" name="FK_DC_ToDeportati">
+<createdBy>Cristian</createdBy>
+<createdTime>2019-01-07 17:45:39 UTC</createdTime>
+<generatorID>48073A18-BEBD-F81C-4301-8EBCD11818B9</generatorID>
+<ownerDesignName>MODEL_LOGIC</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="240442A8-915F-F809-771D-82E3237F4A4B"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="A387DD5E-747E-0F46-E267-6CDE6DC05406" name="FK_DC_ToObiecte">
+<createdBy>Cristian</createdBy>
+<createdTime>2019-01-07 17:45:39 UTC</createdTime>
+<generatorID>9F0CBBBE-8826-F2D5-DD0D-B49A63CB77C9</generatorID>
+<ownerDesignName>MODEL_LOGIC</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="95AFD445-0C87-055D-785F-0AE3C8818D0B"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

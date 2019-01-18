@@ -1,0 +1,126 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="5FCC8059-5FD5-62EF-95FC-DE1484D9654A" name="Deportati">
+<createdBy>Cristian</createdBy>
+<createdTime>2018-10-15 12:42:50 UTC</createdTime>
+<ownerDesignName>MODEL_LOGIC</ownerDesignName>
+<engineerTo>
+<item key="2CE9DB50-65BF-4FFE-FEF9-525B48C8493E" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="ID_DEPORTAT" id="94127E47-E24C-D6B1-9B0B-682AB950859F">
+<createdBy>Cristian</createdBy>
+<createdTime>2018-10-15 12:43:08 UTC</createdTime>
+<ownerDesignName>MODEL_LOGIC</ownerDesignName>
+<engineerTo>
+<item key="2CE9DB50-65BF-4FFE-FEF9-525B48C8493E" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="NUME" id="8206C8C3-AA85-A915-867D-31F9C479F5FF">
+<createdBy>Cristian</createdBy>
+<createdTime>2018-10-15 12:43:20 UTC</createdTime>
+<ownerDesignName>MODEL_LOGIC</ownerDesignName>
+<engineerTo>
+<item key="2CE9DB50-65BF-4FFE-FEF9-525B48C8493E" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>50</dataTypeSize>
+<ownDataTypeParameters>50,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="PRENUME" id="D2642315-19F8-904F-975B-795CBAE7B53A">
+<createdBy>Cristian</createdBy>
+<createdTime>2018-10-15 12:43:42 UTC</createdTime>
+<ownerDesignName>MODEL_LOGIC</ownerDesignName>
+<engineerTo>
+<item key="2CE9DB50-65BF-4FFE-FEF9-525B48C8493E" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>50</dataTypeSize>
+<ownDataTypeParameters>50,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="DATA_NASTERII" id="97AE4EBF-087D-6CC7-A4D2-ADD947A26941">
+<createdBy>Cristian</createdBy>
+<createdTime>2018-10-15 12:43:58 UTC</createdTime>
+<ownerDesignName>MODEL_LOGIC</ownerDesignName>
+<engineerTo>
+<item key="2CE9DB50-65BF-4FFE-FEF9-525B48C8493E" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<listOfRanges>
+<rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
+<beginValue>TO_DATE(&apos;12.06.1841&apos;, &apos;dd.mm.yyyy&apos;)</beginValue>
+<endValue>TO_DATE(&apos;12.06.1941&apos;, &apos;dd.mm.yyyy&apos;)</endValue>
+</rangeDef>
+</listOfRanges>
+</Attribute>
+<Attribute name="DATA_DECES" id="98458F5B-D30D-4802-7FB2-F63CBB7EADF3">
+<createdBy>Cristian</createdBy>
+<createdTime>2018-10-15 12:44:14 UTC</createdTime>
+<ownerDesignName>MODEL_LOGIC</ownerDesignName>
+<engineerTo>
+<item key="2CE9DB50-65BF-4FFE-FEF9-525B48C8493E" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<checkConstraint>
+<implementationDef dbType="Generic Constraint" definition="DATA_DECES&gt;=DATA_NASTERII"/>
+</checkConstraint>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<listOfRanges>
+<rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
+<beginValue>TO_DATE(&apos;12.06.1841&apos;, &apos;dd.mm.yyyy&apos;)</beginValue>
+<endValue>TO_DATE(&apos;22.10.2018&apos;, &apos;dd.mm.yyyy&apos;)</endValue>
+</rangeDef>
+</listOfRanges>
+</Attribute>
+<Attribute name="ID_LOCALITATE" id="A6DF2F12-47A1-773B-72D3-131CFF918A67">
+<createdBy>Cristian</createdBy>
+<createdTime>2018-11-12 11:22:17 UTC</createdTime>
+<generatorID>C668EC3B-CD03-FC90-3BE0-FB60E67E6AF7</generatorID>
+<ownerDesignName>MODEL_LOGIC</ownerDesignName>
+<engineerTo>
+<item key="2CE9DB50-65BF-4FFE-FEF9-525B48C8493E" value="true"/>
+</engineerTo>
+<referedAttribute>2A277603-892D-C3A3-4C3E-7E98D7AA39FB</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="E99289FD-3250-513F-82F9-A78DFD3988EE" name="Deportati PK">
+<createdBy>Cristian</createdBy>
+<createdTime>2018-10-15 12:43:38 UTC</createdTime>
+<ownerDesignName>MODEL_LOGIC</ownerDesignName>
+<engineerTo>
+<item key="2CE9DB50-65BF-4FFE-FEF9-525B48C8493E" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<newElementsIDs>94127E47-E24C-D6B1-9B0B-682AB950859F</newElementsIDs>
+<usedAttributes>
+<attributeRef>94127E47-E24C-D6B1-9B0B-682AB950859F</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>
